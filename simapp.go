@@ -529,17 +529,19 @@ func compareNetworkSlice(sliceNew *NetworkSlice, sliceOld *NetworkSlice) bool {
 	//slice Id should not change
 	qosNew := sliceNew.Qos
 	qosOld := sliceOld.Qos
-	if qosNew.Uplink != qosOld.Uplink {
-		log.Println("Uplink Rate changed ")
-		return true
-	}
-	if qosNew.Downlink != qosOld.Downlink {
-		log.Println("Downlink Rate changed ")
-		return true
-	}
-	if qosNew.TrafficClass != qosOld.TrafficClass {
-		log.Println("Traffic Class changed ")
-		return true
+	if qosNew != nil && qosOld != nil {
+		if qosNew.Uplink != qosOld.Uplink {
+			log.Println("Uplink Rate changed ")
+			return true
+		}
+		if qosNew.Downlink != qosOld.Downlink {
+			log.Println("Downlink Rate changed ")
+			return true
+		}
+		if qosNew.TrafficClass != qosOld.TrafficClass {
+			log.Println("Traffic Class changed ")
+			return true
+		}
 	}
 	appFilteringRulesNew := sliceNew.ApplicationFilteringRules
 	appFilteringRulesOld := sliceOld.ApplicationFilteringRules
